@@ -34,22 +34,15 @@ public class Program {
 			checkIn = sdf.parse(JOptionPane.showInputDialog("Check-In"));
 			checkOut = sdf.parse(JOptionPane.showInputDialog("Check-Out"));
 
-			Date now = new Date();
-			if (checkIn.before(now) || checkOut.before(now)) {
+			String error = reservation.updateDate(checkIn, checkOut);
 
-				System.out.println("As datas de atualização devem ser futuras");
+			if (error != null) {
 
-			} else if (!checkOut.after(checkIn)) {
-
-				System.out.println("Error in reservation data de check-out antes de check-in");
+				System.out.println(error);
 
 			} else {
-
-				reservation.updateDate(checkIn, checkOut);
 				System.out.println(reservation);
-
 			}
-
 		}
 
 	}
